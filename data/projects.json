@@ -1,5 +1,35 @@
 [
-  {"name": "Market Ops HQ", "summary": "Briefs, watchlists, wallet status, risk monitoring", "meta": "Risk: medium • 3 active tasks"},
-  {"name": "Build + Launch", "summary": "Repo work, release flow, deploy visibility, launch comms", "meta": "Risk: medium • 2 active tasks"},
-  {"name": "Creator Ops", "summary": "Content pipeline, editing handoffs, distribution, monetization hooks", "meta": "Risk: low • 2 active tasks"}
+  {
+    "id": "project-market-ops",
+    "name": "Market Ops HQ",
+    "summary": "Briefs, watchlists, wallet status, risk monitoring",
+    "meta": "Risk: medium • 3 active tasks",
+    "workspaceId": "workspace-market-ops",
+    "risk": "medium",
+    "linkedBrief": "daily-market-brief",
+    "linkedRepo": "Jorelnow/NEW-TESTING-TOOL",
+    "ownerAgentId": "agent-research"
+  },
+  {
+    "id": "project-build-launch",
+    "name": "Build + Launch",
+    "summary": "Repo work, release flow, deploy visibility, launch comms",
+    "meta": "Risk: medium • 2 active tasks",
+    "workspaceId": "workspace-market-ops",
+    "risk": "medium",
+    "linkedBrief": null,
+    "linkedRepo": "Jorelnow/NEW-TESTING-TOOL",
+    "ownerAgentId": "agent-builder"
+  },
+  {
+    "id": "project-creator-ops",
+    "name": "Creator Ops",
+    "summary": "Content pipeline, editing handoffs, distribution, monetization hooks",
+    "meta": "Risk: low • 2 active tasks",
+    "workspaceId": "workspace-market-ops",
+    "risk": "low",
+    "linkedBrief": null,
+    "linkedRepo": null,
+    "ownerAgentId": "agent-comms"
+  }
 ]

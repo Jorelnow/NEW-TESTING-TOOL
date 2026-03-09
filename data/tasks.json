@@ -1,18 +1,82 @@
 {
   "queued": [
-    {"title": "Improve equity data coverage", "project": "Market Ops HQ", "owner": "Research Agent", "risk": "low"},
-    {"title": "Map CapCut/Descript handoff flow", "project": "Creator Ops", "owner": "Comms Agent", "risk": "low"}
+    {
+      "id": "task-equity-coverage",
+      "title": "Improve equity data coverage",
+      "projectId": "project-market-ops",
+      "ownerAgentId": "agent-research",
+      "status": "queued",
+      "priority": "medium",
+      "risk": "low"
+    },
+    {
+      "id": "task-capcut-descript-flow",
+      "title": "Map CapCut/Descript handoff flow",
+      "projectId": "project-creator-ops",
+      "ownerAgentId": "agent-comms",
+      "status": "queued",
+      "priority": "medium",
+      "risk": "low"
+    }
   ],
   "inProgress": [
-    {"title": "Refine shared-agent workspace UI", "project": "Build + Launch", "owner": "Builder Agent", "risk": "medium"},
-    {"title": "Prepare daily market brief quality upgrade", "project": "Market Ops HQ", "owner": "Research Agent", "risk": "medium"}
+    {
+      "id": "task-shared-workspace-ui",
+      "title": "Refine shared-agent workspace UI",
+      "projectId": "project-build-launch",
+      "ownerAgentId": "agent-builder",
+      "status": "in-progress",
+      "priority": "high",
+      "risk": "medium"
+    },
+    {
+      "id": "task-brief-upgrade",
+      "title": "Prepare daily market brief quality upgrade",
+      "projectId": "project-market-ops",
+      "ownerAgentId": "agent-research",
+      "status": "in-progress",
+      "priority": "high",
+      "risk": "medium"
+    }
   ],
   "approvalNeeded": [
-    {"title": "Configure Sponge wallet credentials", "project": "Market Ops HQ", "owner": "Trading/Risk Agent", "risk": "high"},
-    {"title": "Enable production-facing automation", "project": "Build + Launch", "owner": "Ops Agent", "risk": "high"}
+    {
+      "id": "task-sponge-config",
+      "title": "Configure Sponge wallet credentials",
+      "projectId": "project-market-ops",
+      "ownerAgentId": "agent-trading",
+      "status": "approval-needed",
+      "priority": "high",
+      "risk": "high"
+    },
+    {
+      "id": "task-prod-automation",
+      "title": "Enable production-facing automation",
+      "projectId": "project-build-launch",
+      "ownerAgentId": "agent-ops",
+      "status": "approval-needed",
+      "priority": "high",
+      "risk": "high"
+    }
   ],
   "done": [
-    {"title": "Deploy dashboard to Vercel", "project": "Build + Launch", "owner": "Ops Agent", "risk": "done"},
-    {"title": "Push market ops starter to GitHub", "project": "Build + Launch", "owner": "Builder Agent", "risk": "done"}
+    {
+      "id": "task-vercel-deploy",
+      "title": "Deploy dashboard to Vercel",
+      "projectId": "project-build-launch",
+      "ownerAgentId": "agent-ops",
+      "status": "done",
+      "priority": "high",
+      "risk": "done"
+    },
+    {
+      "id": "task-push-github",
+      "title": "Push market ops starter to GitHub",
+      "projectId": "project-build-launch",
+      "ownerAgentId": "agent-builder",
+      "status": "done",
+      "priority": "high",
+      "risk": "done"
+    }
   ]
 }

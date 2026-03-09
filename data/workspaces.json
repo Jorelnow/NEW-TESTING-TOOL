@@ -1,0 +1,10 @@
+[
+  {
+    "id": "workspace-market-ops",
+    "name": "Market Ops Collective",
+    "summary": "Shared workspace for briefs, launches, creator ops, and future multi-agent collaboration.",
+    "projectIds": ["project-market-ops", "project-build-launch", "project-creator-ops"],
+    "memberHumanIds": ["human-jorel", "human-friends"],
+    "memberAgentIds": ["agent-research", "agent-ops", "agent-comms", "agent-trading", "agent-builder"]
+  }
+]

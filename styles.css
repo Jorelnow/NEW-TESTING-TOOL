@@ -66,6 +66,7 @@ body {
 .watch-item span, .project-card span, .project-card small, .history-item span, .history-item small {
   display: block; color: #9cabbe; margin-top: 6px; font-size: 0.9rem;
 }
+.divider { height: 1px; background: rgba(255,255,255,0.08); margin: 16px 0; }
 .history-list { display: grid; gap: 12px; }
 .history-item p { margin: 10px 0; }
 .badge {

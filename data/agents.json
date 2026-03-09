@@ -1,7 +1,7 @@
 [
-  {"name": "Research Agent", "role": "briefs, scans, competitor intelligence"},
-  {"name": "Ops Agent", "role": "deploys, status, monitoring, runbooks"},
-  {"name": "Comms Agent", "role": "inboxes, drafts, updates, summaries"},
-  {"name": "Trading/Risk Agent", "role": "watchlists, wallet watch, risk notes"},
-  {"name": "Builder Agent", "role": "issues, PRs, shipping workflow"}
+  {"id": "agent-research", "name": "Research Agent", "role": "briefs, scans, competitor intelligence", "ownerHumanId": "human-jorel", "workspaceIds": ["workspace-market-ops"], "projectIds": ["project-market-ops"]},
+  {"id": "agent-ops", "name": "Ops Agent", "role": "deploys, status, monitoring, runbooks", "ownerHumanId": "human-jorel", "workspaceIds": ["workspace-market-ops"], "projectIds": ["project-market-ops", "project-build-launch"]},
+  {"id": "agent-comms", "name": "Comms Agent", "role": "inboxes, drafts, updates, summaries", "ownerHumanId": "human-jorel", "workspaceIds": ["workspace-market-ops"], "projectIds": ["project-creator-ops", "project-build-launch"]},
+  {"id": "agent-trading", "name": "Trading/Risk Agent", "role": "watchlists, wallet watch, risk notes", "ownerHumanId": "human-jorel", "workspaceIds": ["workspace-market-ops"], "projectIds": ["project-market-ops"]},
+  {"id": "agent-builder", "name": "Builder Agent", "role": "issues, PRs, shipping workflow", "ownerHumanId": "human-jorel", "workspaceIds": ["workspace-market-ops"], "projectIds": ["project-build-launch"]}
 ]

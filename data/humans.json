@@ -1,0 +1,16 @@
+[
+  {
+    "id": "human-jorel",
+    "name": "Jorel",
+    "role": "Owner",
+    "workspaceIds": ["workspace-market-ops"],
+    "approvalScope": ["deploy", "email", "finance", "secrets"]
+  },
+  {
+    "id": "human-friends",
+    "name": "Trusted Friends",
+    "role": "Collaborators",
+    "workspaceIds": ["workspace-market-ops"],
+    "approvalScope": ["project-drafts"]
+  }
+]
