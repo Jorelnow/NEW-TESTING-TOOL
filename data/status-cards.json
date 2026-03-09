@@ -1,0 +1,5 @@
+[
+  {"title": "Research Pipeline", "badge": "Active", "badgeClass": "green", "text": "Company briefs, market pipeline, daily brief mailer, and model-routing logic are in place."},
+  {"title": "Wallet Watch", "badge": "Awaiting config", "badgeClass": "amber", "text": "Sponge monitoring flow exists, but live verification still needs wallet credentials on disk."},
+  {"title": "Deploy Status", "badge": "Live", "badgeClass": "green", "text": "Dashboard is deployed to Vercel. Manual deploy path is working."}
+]

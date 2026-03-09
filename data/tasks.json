@@ -1,0 +1,18 @@
+{
+  "queued": [
+    {"title": "Improve equity data coverage", "project": "Market Ops HQ", "owner": "Research Agent", "risk": "low"},
+    {"title": "Map CapCut/Descript handoff flow", "project": "Creator Ops", "owner": "Comms Agent", "risk": "low"}
+  ],
+  "inProgress": [
+    {"title": "Refine shared-agent workspace UI", "project": "Build + Launch", "owner": "Builder Agent", "risk": "medium"},
+    {"title": "Prepare daily market brief quality upgrade", "project": "Market Ops HQ", "owner": "Research Agent", "risk": "medium"}
+  ],
+  "approvalNeeded": [
+    {"title": "Configure Sponge wallet credentials", "project": "Market Ops HQ", "owner": "Trading/Risk Agent", "risk": "high"},
+    {"title": "Enable production-facing automation", "project": "Build + Launch", "owner": "Ops Agent", "risk": "high"}
+  ],
+  "done": [
+    {"title": "Deploy dashboard to Vercel", "project": "Build + Launch", "owner": "Ops Agent", "risk": "done"},
+    {"title": "Push market ops starter to GitHub", "project": "Build + Launch", "owner": "Builder Agent", "risk": "done"}
+  ]
+}

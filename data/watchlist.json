@@ -1,0 +1,8 @@
+[
+  {"symbol": "BTC", "note": "Crypto risk barometer"},
+  {"symbol": "ETH", "note": "Smart contract ecosystem pulse"},
+  {"symbol": "SOL", "note": "High-beta alt ecosystem"},
+  {"symbol": "NVDA", "note": "AI infrastructure leader"},
+  {"symbol": "TSLA", "note": "Retail attention + AI optionality"},
+  {"symbol": "QQQ", "note": "Growth / tech risk proxy"}
+]

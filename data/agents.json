@@ -1,0 +1,7 @@
+[
+  {"name": "Research Agent", "role": "briefs, scans, competitor intelligence"},
+  {"name": "Ops Agent", "role": "deploys, status, monitoring, runbooks"},
+  {"name": "Comms Agent", "role": "inboxes, drafts, updates, summaries"},
+  {"name": "Trading/Risk Agent", "role": "watchlists, wallet watch, risk notes"},
+  {"name": "Builder Agent", "role": "issues, PRs, shipping workflow"}
+]

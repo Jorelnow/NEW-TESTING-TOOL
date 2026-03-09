@@ -1,0 +1,18 @@
+{
+  "coverageStatus": {
+    "crypto": "complete",
+    "equities": "weak",
+    "macro": "partial",
+    "overall": "usable"
+  },
+  "headline": [
+    "BTC remains the clearest strength signal in the starter watchlist.",
+    "ETH is mixed and less decisive.",
+    "Equities coverage still needs a stronger data layer before high confidence."
+  ],
+  "risks": [
+    "Weak equity coverage limits conviction.",
+    "Macro and regulatory shifts remain material.",
+    "Narrative can outrun evidence without structured data."
+  ]
+}

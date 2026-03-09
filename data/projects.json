@@ -1,0 +1,5 @@
+[
+  {"name": "Market Ops HQ", "summary": "Briefs, watchlists, wallet status, risk monitoring", "meta": "Risk: medium • 3 active tasks"},
+  {"name": "Build + Launch", "summary": "Repo work, release flow, deploy visibility, launch comms", "meta": "Risk: medium • 2 active tasks"},
+  {"name": "Creator Ops", "summary": "Content pipeline, editing handoffs, distribution, monetization hooks", "meta": "Risk: low • 2 active tasks"}
+]

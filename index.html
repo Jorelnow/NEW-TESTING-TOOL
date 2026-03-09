@@ -33,18 +33,18 @@
     <main class="main">
       <header class="hero" id="overview">
         <div>
-          <p class="eyebrow">Market ops dashboard v5</p>
-          <h2>Daily brief data now feeds the dashboard state.</h2>
+          <p class="eyebrow">Market ops dashboard v6</p>
+          <h2>Normalized data model for briefs, projects, agents, tasks, approvals, and watchlists.</h2>
           <p class="subcopy">
-            The market brief pipeline is now wired into dashboard data, so brief quality, summary, risks,
-            and history can be updated as part of a recurring workflow instead of staying static.
+            The dashboard now reads from separate JSON sources, which makes it easier to evolve projects,
+            tasks, agents, approvals, watchlists, and brief history independently as the workspace grows.
           </p>
         </div>
         <div class="hero-cards">
           <section class="card stat">
             <span>Dashboard state</span>
-            <strong>v5 brief-connected</strong>
-            <small>Current brief + history live</small>
+            <strong>v6 normalized data</strong>
+            <small>Separate JSON sources live</small>
           </section>
           <section class="card stat">
             <span>Deployment</span>
@@ -113,7 +113,7 @@
       <section class="card" id="task-board">
         <div class="card-head">
           <h3>Shared Task Board</h3>
-          <span class="badge green">Mock workflow live</span>
+          <span class="badge green">Data-backed</span>
         </div>
         <div class="task-board">
           <div class="task-column"><h4>Queued</h4><div id="queuedTasks"></div></div>
@@ -182,25 +182,31 @@
     `;
 
     Promise.all([
-      fetch('./data/dashboard.json').then((r) => r.json()),
-      fetch('./data/brief-history.json').then((r) => r.json())
+      fetch('./data/brief-current.json').then((r) => r.json()),
+      fetch('./data/brief-history.json').then((r) => r.json()),
+      fetch('./data/watchlist.json').then((r) => r.json()),
+      fetch('./data/status-cards.json').then((r) => r.json()),
+      fetch('./data/projects.json').then((r) => r.json()),
+      fetch('./data/agents.json').then((r) => r.json()),
+      fetch('./data/tasks.json').then((r) => r.json()),
+      fetch('./data/approvals.json').then((r) => r.json())
     ])
-      .then(([data, briefHistory]) => {
+      .then(([brief, briefHistory, watchlist, statusCards, projects, agents, tasks, approvals]) => {
         const briefBadge = document.getElementById('briefBadge');
-        briefBadge.textContent = `${data.brief.coverageStatus.overall} coverage`;
-        briefBadge.className = `badge ${data.brief.coverageStatus.overall === 'usable' ? 'amber' : 'green'}`;
+        briefBadge.textContent = `${brief.coverageStatus.overall} coverage`;
+        briefBadge.className = `badge ${brief.coverageStatus.overall === 'usable' ? 'amber' : 'green'}`;
 
         document.getElementById('coverageStatus').innerHTML = `
-          Crypto: ${data.brief.coverageStatus.crypto} •
-          Equities: ${data.brief.coverageStatus.equities} •
-          Macro: ${data.brief.coverageStatus.macro} •
-          Overall: ${data.brief.coverageStatus.overall}
+          Crypto: ${brief.coverageStatus.crypto} •
+          Equities: ${brief.coverageStatus.equities} •
+          Macro: ${brief.coverageStatus.macro} •
+          Overall: ${brief.coverageStatus.overall}
         `;
 
-        document.getElementById('briefHeadline').innerHTML = data.brief.headline.map(x => `<li>${x}</li>`).join('');
-        document.getElementById('briefRisks').innerHTML = data.brief.risks.map(x => `<li>${x}</li>`).join('');
+        document.getElementById('briefHeadline').innerHTML = brief.headline.map(x => `<li>${x}</li>`).join('');
+        document.getElementById('briefRisks').innerHTML = brief.risks.map(x => `<li>${x}</li>`).join('');
 
-        document.getElementById('watchlistGrid').innerHTML = data.watchlist.map(item => `
+        document.getElementById('watchlistGrid').innerHTML = watchlist.map(item => `
           <div class="watch-item"><strong>${item.symbol}</strong><span>${item.note}</span></div>
         `).join('');
 
@@ -213,7 +219,7 @@
           </div>
         `).join('');
 
-        document.getElementById('statusGrid').innerHTML = data.statusCards.map(card => `
+        document.getElementById('statusGrid').innerHTML = statusCards.map(card => `
           <article class="card">
             <div class="card-head">
               <h3>${card.title}</h3>
@@ -223,7 +229,7 @@
           </article>
         `).join('');
 
-        document.getElementById('projectGrid').innerHTML = data.projects.map(project => `
+        document.getElementById('projectGrid').innerHTML = projects.map(project => `
           <div class="project-card">
             <strong>${project.name}</strong>
             <span>${project.summary}</span>
@@ -231,16 +237,16 @@
           </div>
         `).join('');
 
-        document.getElementById('agentList').innerHTML = data.agents.map(agent => `
+        document.getElementById('agentList').innerHTML = agents.map(agent => `
           <li><strong>${agent.name}</strong> — ${agent.role}</li>
         `).join('');
 
-        document.getElementById('queuedTasks').innerHTML = data.taskBoard.queued.map(taskCard).join('');
-        document.getElementById('inProgressTasks').innerHTML = data.taskBoard.inProgress.map(taskCard).join('');
-        document.getElementById('approvalNeededTasks').innerHTML = data.taskBoard.approvalNeeded.map(taskCard).join('');
-        document.getElementById('doneTasks').innerHTML = data.taskBoard.done.map(taskCard).join('');
+        document.getElementById('queuedTasks').innerHTML = tasks.queued.map(taskCard).join('');
+        document.getElementById('inProgressTasks').innerHTML = tasks.inProgress.map(taskCard).join('');
+        document.getElementById('approvalNeededTasks').innerHTML = tasks.approvalNeeded.map(taskCard).join('');
+        document.getElementById('doneTasks').innerHTML = tasks.done.map(taskCard).join('');
 
-        document.getElementById('approvalList').innerHTML = data.approvals.map(item => `<li>${item}</li>`).join('');
+        document.getElementById('approvalList').innerHTML = approvals.map(item => `<li>${item}</li>`).join('');
       })
       .catch((err) => {
         console.error(err);
