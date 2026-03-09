@@ -50,20 +50,24 @@ body {
 .list { margin: 0; padding-left: 18px; }
 .list li { margin-bottom: 12px; }
 .list.compact li { margin-bottom: 8px; }
-.muted { color: #9cabbe; }
+.muted, .meta-block { color: #9cabbe; }
 .watch-grid, .brief-grid, .project-grid, .future-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
 }
 .future-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 18px; }
-.watch-item, .project-card {
+.watch-item, .project-card, .history-item {
   padding: 14px;
   border-radius: 14px;
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.06);
 }
-.watch-item span, .project-card span, .project-card small { display: block; color: #9cabbe; margin-top: 6px; font-size: 0.9rem; }
+.watch-item span, .project-card span, .project-card small, .history-item span, .history-item small {
+  display: block; color: #9cabbe; margin-top: 6px; font-size: 0.9rem;
+}
+.history-list { display: grid; gap: 12px; }
+.history-item p { margin: 10px 0; }
 .badge {
   border-radius: 999px;
   padding: 7px 10px;

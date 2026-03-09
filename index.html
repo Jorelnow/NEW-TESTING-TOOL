@@ -19,6 +19,7 @@
       <nav class="nav">
         <a href="#overview">Overview</a>
         <a href="#brief">Today’s Brief</a>
+        <a href="#history">Brief History</a>
         <a href="#watchlist">Watchlist</a>
         <a href="#status">System Status</a>
         <a href="#shared-projects">Shared Projects</a>
@@ -32,18 +33,18 @@
     <main class="main">
       <header class="hero" id="overview">
         <div>
-          <p class="eyebrow">Market ops dashboard v4</p>
-          <h2>Data-driven projects, visible tasks, assigned agents, and approval-aware collaboration.</h2>
+          <p class="eyebrow">Market ops dashboard v5</p>
+          <h2>Daily brief data now feeds the dashboard state.</h2>
           <p class="subcopy">
-            The dashboard now renders from local JSON state so projects, tasks, agents, approvals,
-            watchlist items, and brief status can become real data instead of hardcoded mock copy.
+            The market brief pipeline is now wired into dashboard data, so brief quality, summary, risks,
+            and history can be updated as part of a recurring workflow instead of staying static.
           </p>
         </div>
         <div class="hero-cards">
           <section class="card stat">
             <span>Dashboard state</span>
-            <strong>v4 data-driven UI</strong>
-            <small>Backed by local JSON</small>
+            <strong>v5 brief-connected</strong>
+            <small>Current brief + history live</small>
           </section>
           <section class="card stat">
             <span>Deployment</span>
@@ -79,6 +80,14 @@
           </div>
           <div id="watchlistGrid" class="watch-grid"></div>
         </article>
+      </section>
+
+      <section class="card" id="history">
+        <div class="card-head">
+          <h3>Brief History</h3>
+          <span class="badge green">Connected</span>
+        </div>
+        <div id="briefHistory" class="history-list"></div>
       </section>
 
       <section id="statusGrid" class="grid three"></section>
@@ -172,9 +181,11 @@
       </div>
     `;
 
-    fetch('./data/dashboard.json')
-      .then((r) => r.json())
-      .then((data) => {
+    Promise.all([
+      fetch('./data/dashboard.json').then((r) => r.json()),
+      fetch('./data/brief-history.json').then((r) => r.json())
+    ])
+      .then(([data, briefHistory]) => {
         const briefBadge = document.getElementById('briefBadge');
         briefBadge.textContent = `${data.brief.coverageStatus.overall} coverage`;
         briefBadge.className = `badge ${data.brief.coverageStatus.overall === 'usable' ? 'amber' : 'green'}`;
@@ -191,6 +202,15 @@
 
         document.getElementById('watchlistGrid').innerHTML = data.watchlist.map(item => `
           <div class="watch-item"><strong>${item.symbol}</strong><span>${item.note}</span></div>
+        `).join('');
+
+        document.getElementById('briefHistory').innerHTML = briefHistory.map(item => `
+          <div class="history-item">
+            <strong>${item.date} — ${item.title}</strong>
+            <span>Quality: ${item.quality}</span>
+            <p>${item.summary}</p>
+            <small>Next: ${item.nextAction}</small>
+          </div>
         `).join('');
 
         document.getElementById('statusGrid').innerHTML = data.statusCards.map(card => `

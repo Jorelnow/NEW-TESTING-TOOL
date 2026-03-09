@@ -1,0 +1,16 @@
+[
+  {
+    "date": "2026-03-09",
+    "title": "Baseline brief wired into dashboard",
+    "quality": "usable",
+    "summary": "Daily market brief is now feeding dashboard state, with BTC strongest and equities still under-covered.",
+    "nextAction": "Add structured equity market data and improve recurring brief quality."
+  },
+  {
+    "date": "2026-03-09",
+    "title": "First live market brief baseline",
+    "quality": "partial",
+    "summary": "BTC looked strongest in the starter watchlist, while equities coverage was still weak and needed better data.",
+    "nextAction": "Improve equity coverage and add structured market data."
+  }
+]
