@@ -47,8 +47,8 @@ body {
 .stat span { color: #9cabbe; font-size: 0.85rem; }
 .stat strong { display: block; font-size: 1.4rem; margin: 8px 0; }
 .stat small { color: #9cabbe; }
-.list, .steps { margin: 0; padding-left: 18px; }
-.list li, .steps li { margin-bottom: 12px; }
+.list { margin: 0; padding-left: 18px; }
+.list li { margin-bottom: 12px; }
 .list.compact li { margin-bottom: 8px; }
 .muted { color: #9cabbe; }
 .watch-grid, .brief-grid, .project-grid, .future-grid {
@@ -63,7 +63,7 @@ body {
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.06);
 }
-.watch-item span, .project-card span { display: block; color: #9cabbe; margin-top: 6px; font-size: 0.9rem; }
+.watch-item span, .project-card span, .project-card small { display: block; color: #9cabbe; margin-top: 6px; font-size: 0.9rem; }
 .badge {
   border-radius: 999px;
   padding: 7px 10px;
@@ -75,7 +75,34 @@ body {
 .badge.green { background: rgba(72, 187, 120, 0.18); color: #b8f5cb; }
 .badge.amber { background: rgba(236, 201, 75, 0.18); color: #ffe59b; }
 .badge.red { background: rgba(245, 101, 101, 0.18); color: #ffc2c2; }
+.task-board {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+.task-column {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  padding: 14px;
+}
+.task-column h4 { margin-top: 0; margin-bottom: 12px; }
+.task-card {
+  border-radius: 14px;
+  padding: 12px;
+  margin-bottom: 12px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.task-card span, .task-card small { display: block; color: #9cabbe; margin-top: 6px; }
+.task-card.low { border-left: 4px solid #63b3ed; }
+.task-card.medium { border-left: 4px solid #ecc94b; }
+.task-card.high { border-left: 4px solid #f56565; }
+.task-card.done { border-left: 4px solid #48bb78; }
+@media (max-width: 1100px) {
+  .task-board { grid-template-columns: 1fr 1fr; }
+}
 @media (max-width: 980px) {
-  .shell, .hero, .grid.two, .grid.three, .watch-grid, .brief-grid, .project-grid, .future-grid { grid-template-columns: 1fr; }
+  .shell, .hero, .grid.two, .grid.three, .watch-grid, .brief-grid, .project-grid, .future-grid, .task-board { grid-template-columns: 1fr; }
   .sidebar { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
 }

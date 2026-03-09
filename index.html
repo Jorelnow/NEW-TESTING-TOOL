@@ -23,6 +23,7 @@
         <a href="#watchlist">Watchlist</a>
         <a href="#status">System Status</a>
         <a href="#shared-projects">Shared Projects</a>
+        <a href="#task-board">Task Board</a>
         <a href="#agent-roster">Agent Roster</a>
         <a href="#approvals">Approvals Queue</a>
         <a href="#future">Future Team Agents</a>
@@ -32,23 +33,23 @@
     <main class="main">
       <header class="hero" id="overview">
         <div>
-          <p class="eyebrow">Market ops dashboard v2</p>
-          <h2>Solo command center now, shared agent workspace next.</h2>
+          <p class="eyebrow">Market ops dashboard v3</p>
+          <h2>Shared projects, visible tasks, assigned agents, and approval-aware collaboration.</h2>
           <p class="subcopy">
-            This dashboard is evolving from your personal market and ops cockpit into a collaborative workspace
-            where trusted agents can coordinate on shared projects with scoped permissions and approvals.
+            The dashboard now starts to represent actual joint work: projects, tasks, assignments,
+            and approval boundaries for a future multi-agent workspace.
           </p>
         </div>
         <div class="hero-cards">
           <section class="card stat">
             <span>Dashboard state</span>
-            <strong>v2 architecture-ready</strong>
-            <small>Shared-agent model drafted</small>
+            <strong>v3 collaborative UI</strong>
+            <small>Projects + tasks visible</small>
           </section>
           <section class="card stat">
-            <span>Operating mode</span>
-            <strong>Draft-first</strong>
-            <small>Approval queue planned</small>
+            <span>Deployment</span>
+            <strong>Live on Vercel</strong>
+            <small>Manual deploy path working</small>
           </section>
         </div>
       </header>
@@ -59,7 +60,7 @@
             <h3>Today’s Market Brief</h3>
             <span class="badge amber">Partial coverage</span>
           </div>
-          <p class="muted">First live brief showed strong crypto coverage but weaker equities coverage. The workflow has been upgraded to mark coverage quality explicitly.</p>
+          <p class="muted">First live brief showed strong crypto coverage but weaker equities coverage. The workflow marks coverage quality explicitly now.</p>
           <div class="brief-grid">
             <div>
               <h4>Headline Summary</h4>
@@ -114,9 +115,9 @@
         <article class="card">
           <div class="card-head">
             <h3>Deploy Status</h3>
-            <span class="badge red">Blocked</span>
+            <span class="badge green">Live</span>
           </div>
-          <p>Repo is pushed to GitHub. Vercel CLI deployment is blocked by token/auth mismatch.</p>
+          <p>Dashboard is deployed to Vercel. GitHub auto-linking can be improved later, but live deploy is working.</p>
         </article>
       </section>
 
@@ -124,20 +125,23 @@
         <article class="card">
           <div class="card-head">
             <h3>Shared Projects</h3>
-            <span class="badge green">Planned</span>
+            <span class="badge green">Visible</span>
           </div>
           <div class="project-grid">
             <div class="project-card">
               <strong>Market Ops HQ</strong>
               <span>Briefs, watchlists, wallet status, risk monitoring</span>
+              <small>Risk: medium • 3 active tasks</small>
             </div>
             <div class="project-card">
               <strong>Build + Launch</strong>
               <span>Repo work, release flow, deploy visibility, launch comms</span>
+              <small>Risk: medium • 2 active tasks</small>
             </div>
             <div class="project-card">
               <strong>Creator Ops</strong>
               <span>Content pipeline, editing handoffs, distribution, monetization hooks</span>
+              <small>Risk: low • 2 active tasks</small>
             </div>
           </div>
         </article>
@@ -157,11 +161,72 @@
         </article>
       </section>
 
+      <section class="card" id="task-board">
+        <div class="card-head">
+          <h3>Shared Task Board</h3>
+          <span class="badge green">Mock workflow live</span>
+        </div>
+        <div class="task-board">
+          <div class="task-column">
+            <h4>Queued</h4>
+            <div class="task-card low">
+              <strong>Improve equity data coverage</strong>
+              <span>Project: Market Ops HQ</span>
+              <small>Owner: Research Agent • Risk: low</small>
+            </div>
+            <div class="task-card low">
+              <strong>Map CapCut/Descript handoff flow</strong>
+              <span>Project: Creator Ops</span>
+              <small>Owner: Comms Agent • Risk: low</small>
+            </div>
+          </div>
+          <div class="task-column">
+            <h4>In Progress</h4>
+            <div class="task-card medium">
+              <strong>Refine shared-agent workspace UI</strong>
+              <span>Project: Build + Launch</span>
+              <small>Owner: Builder Agent • Risk: medium</small>
+            </div>
+            <div class="task-card medium">
+              <strong>Prepare daily market brief quality upgrade</strong>
+              <span>Project: Market Ops HQ</span>
+              <small>Owner: Research Agent • Risk: medium</small>
+            </div>
+          </div>
+          <div class="task-column">
+            <h4>Approval Needed</h4>
+            <div class="task-card high">
+              <strong>Configure Sponge wallet credentials</strong>
+              <span>Project: Market Ops HQ</span>
+              <small>Owner: Trading/Risk Agent • Risk: high</small>
+            </div>
+            <div class="task-card high">
+              <strong>Enable production-facing automation</strong>
+              <span>Project: Build + Launch</span>
+              <small>Owner: Ops Agent • Risk: high</small>
+            </div>
+          </div>
+          <div class="task-column">
+            <h4>Done</h4>
+            <div class="task-card done">
+              <strong>Deploy dashboard to Vercel</strong>
+              <span>Project: Build + Launch</span>
+              <small>Owner: Ops Agent • Completed</small>
+            </div>
+            <div class="task-card done">
+              <strong>Push market ops starter to GitHub</strong>
+              <span>Project: Build + Launch</span>
+              <small>Owner: Builder Agent • Completed</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="grid two" id="approvals">
         <article class="card">
           <div class="card-head">
             <h3>Approvals Queue</h3>
-            <span class="badge amber">Placeholder</span>
+            <span class="badge amber">Structured</span>
           </div>
           <ul class="list compact">
             <li>Production deploy approvals</li>
