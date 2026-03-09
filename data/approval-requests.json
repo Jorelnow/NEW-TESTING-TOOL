@@ -1,0 +1,35 @@
+[
+  {
+    "id": "approval-prod-automation",
+    "title": "Enable production-facing automation",
+    "projectId": "project-build-launch",
+    "requestedByAgentId": "agent-ops",
+    "requiredApproverHumanId": "human-jorel",
+    "status": "pending",
+    "risk": "high",
+    "reason": "This would enable production-impacting automation and needs explicit approval.",
+    "requestedAt": "2026-03-09T03:20:00Z"
+  },
+  {
+    "id": "approval-sponge-config",
+    "title": "Configure Sponge wallet credentials",
+    "projectId": "project-market-ops",
+    "requestedByAgentId": "agent-trading",
+    "requiredApproverHumanId": "human-jorel",
+    "status": "pending",
+    "risk": "high",
+    "reason": "Wallet credentials create financial blast radius and should be explicitly approved.",
+    "requestedAt": "2026-03-09T03:22:00Z"
+  },
+  {
+    "id": "approval-creator-draft-send",
+    "title": "Send creator outreach draft",
+    "projectId": "project-creator-ops",
+    "requestedByAgentId": "agent-comms",
+    "requiredApproverHumanId": "human-jorel",
+    "status": "draft-only",
+    "risk": "medium",
+    "reason": "External comms should stay draft-first unless explicitly approved.",
+    "requestedAt": "2026-03-09T03:25:00Z"
+  }
+]

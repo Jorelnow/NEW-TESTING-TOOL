@@ -27,6 +27,7 @@
         <a href="#task-board">Task Board</a>
         <a href="#agent-roster">Agent Roster</a>
         <a href="#approvals">Approvals Queue</a>
+        <a href="#audit">Audit Log</a>
         <a href="#future">Future Team Agents</a>
       </nav>
     </aside>
@@ -34,18 +35,18 @@
     <main class="main">
       <header class="hero" id="overview">
         <div>
-          <p class="eyebrow">Market ops dashboard v7</p>
-          <h2>Workspace-aware humans, richer projects, stronger tasks, clearer collaboration model.</h2>
+          <p class="eyebrow">Market ops dashboard v8</p>
+          <h2>Approval-aware collaboration with visible audit history.</h2>
           <p class="subcopy">
-            The dashboard now understands workspaces, humans, richer projects, and richer tasks,
-            giving the shared-agent model a more realistic collaboration schema.
+            The workspace now includes structured approval requests and an audit log so multi-agent collaboration
+            can grow with more trust, reviewability, and operational memory.
           </p>
         </div>
         <div class="hero-cards">
           <section class="card stat">
             <span>Dashboard state</span>
-            <strong>v7 workspace-aware</strong>
-            <small>Humans + workspaces + richer task schema</small>
+            <strong>v8 trust rails</strong>
+            <small>Approval + audit layers live</small>
           </section>
           <section class="card stat">
             <span>Deployment</span>
@@ -141,15 +142,15 @@
             <h3>Approvals Queue</h3>
             <span class="badge amber">Structured</span>
           </div>
-          <ul id="approvalList" class="list compact"></ul>
+          <div id="approvalCards" class="history-list"></div>
         </article>
 
-        <article class="card">
+        <article class="card" id="audit">
           <div class="card-head">
-            <h3>Audit Trail</h3>
-            <span class="badge">Planned</span>
+            <h3>Audit Log</h3>
+            <span class="badge">Visible</span>
           </div>
-          <p class="muted">Future versions should log who did what, on which project, with which approval path.</p>
+          <div id="auditLog" class="history-list"></div>
         </article>
       </section>
 
@@ -195,11 +196,14 @@
       fetch('./data/tasks.json').then((r) => r.json()),
       fetch('./data/approvals.json').then((r) => r.json()),
       fetch('./data/humans.json').then((r) => r.json()),
-      fetch('./data/workspaces.json').then((r) => r.json())
+      fetch('./data/workspaces.json').then((r) => r.json()),
+      fetch('./data/approval-requests.json').then((r) => r.json()),
+      fetch('./data/audit-log.json').then((r) => r.json())
     ])
-      .then(([brief, briefHistory, watchlist, statusCards, projects, agents, tasks, approvals, humans, workspaces]) => {
+      .then(([brief, briefHistory, watchlist, statusCards, projects, agents, tasks, approvals, humans, workspaces, approvalRequests, auditLog]) => {
         const projectById = Object.fromEntries(projects.map(p => [p.id, p]));
         const agentById = Object.fromEntries(agents.map(a => [a.id, a]));
+        const humanById = Object.fromEntries(humans.map(h => [h.id, h]));
 
         const taskCard = (task) => {
           const project = projectById[task.projectId];
@@ -216,13 +220,7 @@
         const briefBadge = document.getElementById('briefBadge');
         briefBadge.textContent = `${brief.coverageStatus.overall} coverage`;
         briefBadge.className = `badge ${brief.coverageStatus.overall === 'usable' ? 'amber' : 'green'}`;
-
-        document.getElementById('coverageStatus').innerHTML = `
-          Crypto: ${brief.coverageStatus.crypto} •
-          Equities: ${brief.coverageStatus.equities} •
-          Macro: ${brief.coverageStatus.macro} •
-          Overall: ${brief.coverageStatus.overall}
-        `;
+        document.getElementById('coverageStatus').innerHTML = `Crypto: ${brief.coverageStatus.crypto} • Equities: ${brief.coverageStatus.equities} • Macro: ${brief.coverageStatus.macro} • Overall: ${brief.coverageStatus.overall}`;
         document.getElementById('briefHeadline').innerHTML = brief.headline.map(x => `<li>${x}</li>`).join('');
         document.getElementById('briefRisks').innerHTML = brief.risks.map(x => `<li>${x}</li>`).join('');
         document.getElementById('watchlistGrid').innerHTML = watchlist.map(item => `<div class="watch-item"><strong>${item.symbol}</strong><span>${item.note}</span></div>`).join('');
@@ -273,12 +271,36 @@
 
         document.getElementById('agentList').innerHTML = agents.map(agent => `<li><strong>${agent.name}</strong> — ${agent.role}</li>`).join('');
         document.getElementById('humanList').innerHTML = humans.map(human => `<li><strong>${human.name}</strong> — ${human.role}</li>`).join('');
-
         document.getElementById('queuedTasks').innerHTML = tasks.queued.map(taskCard).join('');
         document.getElementById('inProgressTasks').innerHTML = tasks.inProgress.map(taskCard).join('');
         document.getElementById('approvalNeededTasks').innerHTML = tasks.approvalNeeded.map(taskCard).join('');
         document.getElementById('doneTasks').innerHTML = tasks.done.map(taskCard).join('');
-        document.getElementById('approvalList').innerHTML = approvals.map(item => `<li>${item}</li>`).join('');
+
+        document.getElementById('approvalCards').innerHTML = approvalRequests.map(req => {
+          const project = projectById[req.projectId];
+          const requester = agentById[req.requestedByAgentId];
+          const approver = humanById[req.requiredApproverHumanId];
+          return `
+            <div class="history-item">
+              <strong>${req.title}</strong>
+              <span>Status: ${req.status} • Risk: ${req.risk}</span>
+              <p>${req.reason}</p>
+              <small>Project: ${project ? project.name : req.projectId} • Requested by: ${requester ? requester.name : req.requestedByAgentId} • Approver: ${approver ? approver.name : req.requiredApproverHumanId}</small>
+            </div>
+          `;
+        }).join('');
+
+        document.getElementById('auditLog').innerHTML = auditLog.map(item => {
+          const project = projectById[item.projectId];
+          const actor = agentById[item.actor] || humanById[item.actor];
+          return `
+            <div class="history-item">
+              <strong>${item.action}</strong>
+              <span>${item.time} • Result: ${item.result}</span>
+              <small>Project: ${project ? project.name : item.projectId} • Actor: ${actor ? actor.name : item.actor}</small>
+            </div>
+          `;
+        }).join('');
       })
       .catch((err) => {
         console.error(err);
