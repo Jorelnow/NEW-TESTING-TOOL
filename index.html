@@ -35,18 +35,18 @@
     <main class="main">
       <header class="hero" id="overview">
         <div>
-          <p class="eyebrow">Market ops dashboard v8</p>
-          <h2>Approval-aware collaboration with visible audit history.</h2>
+          <p class="eyebrow">Market ops dashboard v9</p>
+          <h2>Approval state transitions, linked tasks, visible decisions.</h2>
           <p class="subcopy">
-            The workspace now includes structured approval requests and an audit log so multi-agent collaboration
-            can grow with more trust, reviewability, and operational memory.
+            Approval requests now carry status transitions, linked task IDs, approver decisions, timestamps,
+            and comments so high-risk collaboration can move through a real review path.
           </p>
         </div>
         <div class="hero-cards">
           <section class="card stat">
             <span>Dashboard state</span>
-            <strong>v8 trust rails</strong>
-            <small>Approval + audit layers live</small>
+            <strong>v9 approvals upgraded</strong>
+            <small>Task-linked approval states live</small>
           </section>
           <section class="card stat">
             <span>Deployment</span>
@@ -126,7 +126,7 @@
       <section class="card" id="task-board">
         <div class="card-head">
           <h3>Shared Task Board</h3>
-          <span class="badge green">Schema upgraded</span>
+          <span class="badge green">Approval-linked</span>
         </div>
         <div class="task-board">
           <div class="task-column"><h4>Queued</h4><div id="queuedTasks"></div></div>
@@ -140,7 +140,7 @@
         <article class="card">
           <div class="card-head">
             <h3>Approvals Queue</h3>
-            <span class="badge amber">Structured</span>
+            <span class="badge amber">Stateful</span>
           </div>
           <div id="approvalCards" class="history-list"></div>
         </article>
@@ -186,6 +186,13 @@
       return 'done';
     };
 
+    const approvalBadgeClass = (status) => {
+      if (status === 'pending') return 'amber';
+      if (status === 'approved') return 'green';
+      if (status === 'rejected') return 'red';
+      return '';
+    };
+
     Promise.all([
       fetch('./data/brief-current.json').then((r) => r.json()),
       fetch('./data/brief-history.json').then((r) => r.json()),
@@ -204,15 +211,18 @@
         const projectById = Object.fromEntries(projects.map(p => [p.id, p]));
         const agentById = Object.fromEntries(agents.map(a => [a.id, a]));
         const humanById = Object.fromEntries(humans.map(h => [h.id, h]));
+        const approvalById = Object.fromEntries(approvalRequests.map(a => [a.id, a]));
 
         const taskCard = (task) => {
           const project = projectById[task.projectId];
           const agent = agentById[task.ownerAgentId];
+          const approval = task.approvalRequestId ? approvalById[task.approvalRequestId] : null;
           return `
             <div class="task-card ${riskClass(task.risk)}">
               <strong>${task.title}</strong>
               <span>Project: ${project ? project.name : task.projectId}</span>
               <small>Owner: ${agent ? agent.name : task.ownerAgentId} • Priority: ${task.priority}${task.risk !== 'done' ? ` • Risk: ${task.risk}` : ' • Completed'}</small>
+              ${approval ? `<small>Approval: ${approval.status}</small>` : ''}
             </div>
           `;
         };
@@ -247,26 +257,12 @@
         document.getElementById('workspaceGrid').innerHTML = workspaces.map(ws => {
           const memberHumans = humans.filter(h => ws.memberHumanIds.includes(h.id)).map(h => h.name).join(', ');
           const memberAgents = agents.filter(a => ws.memberAgentIds.includes(a.id)).map(a => a.name).join(', ');
-          return `
-            <div class="project-card">
-              <strong>${ws.name}</strong>
-              <span>${ws.summary}</span>
-              <small>Humans: ${memberHumans}</small>
-              <small>Agents: ${memberAgents}</small>
-            </div>
-          `;
+          return `<div class="project-card"><strong>${ws.name}</strong><span>${ws.summary}</span><small>Humans: ${memberHumans}</small><small>Agents: ${memberAgents}</small></div>`;
         }).join('');
 
         document.getElementById('projectGrid').innerHTML = projects.map(project => {
           const owner = agentById[project.ownerAgentId];
-          return `
-            <div class="project-card">
-              <strong>${project.name}</strong>
-              <span>${project.summary}</span>
-              <small>${project.meta}</small>
-              <small>Owner: ${owner ? owner.name : project.ownerAgentId} • Workspace: ${project.workspaceId}</small>
-            </div>
-          `;
+          return `<div class="project-card"><strong>${project.name}</strong><span>${project.summary}</span><small>${project.meta}</small><small>Owner: ${owner ? owner.name : project.ownerAgentId} • Workspace: ${project.workspaceId}</small></div>`;
         }).join('');
 
         document.getElementById('agentList').innerHTML = agents.map(agent => `<li><strong>${agent.name}</strong> — ${agent.role}</li>`).join('');
@@ -280,12 +276,16 @@
           const project = projectById[req.projectId];
           const requester = agentById[req.requestedByAgentId];
           const approver = humanById[req.requiredApproverHumanId];
+          const decider = req.decisionByHumanId ? humanById[req.decisionByHumanId] : null;
           return `
             <div class="history-item">
               <strong>${req.title}</strong>
-              <span>Status: ${req.status} • Risk: ${req.risk}</span>
+              <span class="badge ${approvalBadgeClass(req.status)}">${req.status}</span>
               <p>${req.reason}</p>
               <small>Project: ${project ? project.name : req.projectId} • Requested by: ${requester ? requester.name : req.requestedByAgentId} • Approver: ${approver ? approver.name : req.requiredApproverHumanId}</small>
+              <small>Requested at: ${req.requestedAt}${req.decisionAt ? ` • Decision at: ${req.decisionAt}` : ''}</small>
+              ${decider ? `<small>Decision by: ${decider.name}</small>` : ''}
+              ${req.decisionComment ? `<small>Comment: ${req.decisionComment}</small>` : ''}
             </div>
           `;
         }).join('');
@@ -293,13 +293,7 @@
         document.getElementById('auditLog').innerHTML = auditLog.map(item => {
           const project = projectById[item.projectId];
           const actor = agentById[item.actor] || humanById[item.actor];
-          return `
-            <div class="history-item">
-              <strong>${item.action}</strong>
-              <span>${item.time} • Result: ${item.result}</span>
-              <small>Project: ${project ? project.name : item.projectId} • Actor: ${actor ? actor.name : item.actor}</small>
-            </div>
-          `;
+          return `<div class="history-item"><strong>${item.action}</strong><span>${item.time} • Result: ${item.result}</span><small>Project: ${project ? project.name : item.projectId} • Actor: ${actor ? actor.name : item.actor}</small></div>`;
         }).join('');
       })
       .catch((err) => {

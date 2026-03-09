@@ -1,6 +1,7 @@
 [
   {
     "id": "approval-prod-automation",
+    "taskId": "task-prod-automation",
     "title": "Enable production-facing automation",
     "projectId": "project-build-launch",
     "requestedByAgentId": "agent-ops",
@@ -8,10 +9,14 @@
     "status": "pending",
     "risk": "high",
     "reason": "This would enable production-impacting automation and needs explicit approval.",
-    "requestedAt": "2026-03-09T03:20:00Z"
+    "requestedAt": "2026-03-09T03:20:00Z",
+    "decisionAt": null,
+    "decisionByHumanId": null,
+    "decisionComment": null
   },
   {
     "id": "approval-sponge-config",
+    "taskId": "task-sponge-config",
     "title": "Configure Sponge wallet credentials",
     "projectId": "project-market-ops",
     "requestedByAgentId": "agent-trading",
@@ -19,10 +24,14 @@
     "status": "pending",
     "risk": "high",
     "reason": "Wallet credentials create financial blast radius and should be explicitly approved.",
-    "requestedAt": "2026-03-09T03:22:00Z"
+    "requestedAt": "2026-03-09T03:22:00Z",
+    "decisionAt": null,
+    "decisionByHumanId": null,
+    "decisionComment": null
   },
   {
     "id": "approval-creator-draft-send",
+    "taskId": null,
     "title": "Send creator outreach draft",
     "projectId": "project-creator-ops",
     "requestedByAgentId": "agent-comms",
@@ -30,6 +39,9 @@
     "status": "draft-only",
     "risk": "medium",
     "reason": "External comms should stay draft-first unless explicitly approved.",
-    "requestedAt": "2026-03-09T03:25:00Z"
+    "requestedAt": "2026-03-09T03:25:00Z",
+    "decisionAt": "2026-03-09T03:26:00Z",
+    "decisionByHumanId": "human-jorel",
+    "decisionComment": "Keep this in draft until the message and recipient list are reviewed."
   }
 ]

@@ -7,7 +7,8 @@
       "ownerAgentId": "agent-research",
       "status": "queued",
       "priority": "medium",
-      "risk": "low"
+      "risk": "low",
+      "approvalRequestId": null
     },
     {
       "id": "task-capcut-descript-flow",
@@ -16,7 +17,8 @@
       "ownerAgentId": "agent-comms",
       "status": "queued",
       "priority": "medium",
-      "risk": "low"
+      "risk": "low",
+      "approvalRequestId": null
     }
   ],
   "inProgress": [
@@ -27,7 +29,8 @@
       "ownerAgentId": "agent-builder",
       "status": "in-progress",
       "priority": "high",
-      "risk": "medium"
+      "risk": "medium",
+      "approvalRequestId": null
     },
     {
       "id": "task-brief-upgrade",
@@ -36,7 +39,8 @@
       "ownerAgentId": "agent-research",
       "status": "in-progress",
       "priority": "high",
-      "risk": "medium"
+      "risk": "medium",
+      "approvalRequestId": null
     }
   ],
   "approvalNeeded": [
@@ -47,7 +51,8 @@
       "ownerAgentId": "agent-trading",
       "status": "approval-needed",
       "priority": "high",
-      "risk": "high"
+      "risk": "high",
+      "approvalRequestId": "approval-sponge-config"
     },
     {
       "id": "task-prod-automation",
@@ -56,7 +61,8 @@
       "ownerAgentId": "agent-ops",
       "status": "approval-needed",
       "priority": "high",
-      "risk": "high"
+      "risk": "high",
+      "approvalRequestId": "approval-prod-automation"
     }
   ],
   "done": [
@@ -67,7 +73,8 @@
       "ownerAgentId": "agent-ops",
       "status": "done",
       "priority": "high",
-      "risk": "done"
+      "risk": "done",
+      "approvalRequestId": null
     },
     {
       "id": "task-push-github",
@@ -76,7 +83,8 @@
       "ownerAgentId": "agent-builder",
       "status": "done",
       "priority": "high",
-      "risk": "done"
+      "risk": "done",
+      "approvalRequestId": null
     }
   ]
 }
