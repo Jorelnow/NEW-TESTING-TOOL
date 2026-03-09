@@ -1,5 +1,54 @@
 [
   {
+    "id": "audit-workspace-model",
+    "time": "2026-03-09T03:38:07Z",
+    "actor": "agent-builder",
+    "projectId": "project-build-launch",
+    "action": "added workspace and human-aware collaboration model",
+    "result": "success"
+  },
+  {
+    "id": "audit-approval-decision-approval-creator-draft-send",
+    "time": "2026-03-09T03:26:00Z",
+    "actor": "human-jorel",
+    "projectId": "project-creator-ops",
+    "action": "decision on approval request: Send creator outreach draft",
+    "result": "draft-only",
+    "comment": "Keep this in draft until the message and recipient list are reviewed."
+  },
+  {
+    "id": "audit-approval-request-approval-creator-draft-send",
+    "time": "2026-03-09T03:25:00Z",
+    "actor": "agent-comms",
+    "projectId": "project-creator-ops",
+    "action": "created approval request: Send creator outreach draft",
+    "result": "draft-only"
+  },
+  {
+    "id": "audit-approval-request-approval-sponge-config",
+    "time": "2026-03-09T03:22:00Z",
+    "actor": "agent-trading",
+    "projectId": "project-market-ops",
+    "action": "created approval request: Configure Sponge wallet credentials",
+    "result": "pending"
+  },
+  {
+    "id": "audit-approval-request-approval-prod-automation",
+    "time": "2026-03-09T03:20:00Z",
+    "actor": "agent-ops",
+    "projectId": "project-build-launch",
+    "action": "created approval request: Enable production-facing automation",
+    "result": "pending"
+  },
+  {
+    "id": "audit-brief-wire",
+    "time": "2026-03-09T03:18:19Z",
+    "actor": "agent-research",
+    "projectId": "project-market-ops",
+    "action": "wired daily brief data into dashboard",
+    "result": "success"
+  },
+  {
     "id": "audit-deploy-v1",
     "time": "2026-03-09T03:03:32Z",
     "actor": "agent-ops",
@@ -13,22 +62,6 @@
     "actor": "agent-builder",
     "projectId": "project-build-launch",
     "action": "pushed market ops starter to GitHub",
-    "result": "success"
-  },
-  {
-    "id": "audit-brief-wire",
-    "time": "2026-03-09T03:18:19Z",
-    "actor": "agent-research",
-    "projectId": "project-market-ops",
-    "action": "wired daily brief data into dashboard",
-    "result": "success"
-  },
-  {
-    "id": "audit-workspace-model",
-    "time": "2026-03-09T03:38:07Z",
-    "actor": "agent-builder",
-    "projectId": "project-build-launch",
-    "action": "added workspace and human-aware collaboration model",
     "result": "success"
   }
 ]
