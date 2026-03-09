@@ -16,7 +16,6 @@
           <p>MachoClaw command center</p>
         </div>
       </div>
-
       <nav class="nav">
         <a href="#overview">Overview</a>
         <a href="#brief">Today’s Brief</a>
@@ -33,18 +32,18 @@
     <main class="main">
       <header class="hero" id="overview">
         <div>
-          <p class="eyebrow">Market ops dashboard v3</p>
-          <h2>Shared projects, visible tasks, assigned agents, and approval-aware collaboration.</h2>
+          <p class="eyebrow">Market ops dashboard v4</p>
+          <h2>Data-driven projects, visible tasks, assigned agents, and approval-aware collaboration.</h2>
           <p class="subcopy">
-            The dashboard now starts to represent actual joint work: projects, tasks, assignments,
-            and approval boundaries for a future multi-agent workspace.
+            The dashboard now renders from local JSON state so projects, tasks, agents, approvals,
+            watchlist items, and brief status can become real data instead of hardcoded mock copy.
           </p>
         </div>
         <div class="hero-cards">
           <section class="card stat">
             <span>Dashboard state</span>
-            <strong>v3 collaborative UI</strong>
-            <small>Projects + tasks visible</small>
+            <strong>v4 data-driven UI</strong>
+            <small>Backed by local JSON</small>
           </section>
           <section class="card stat">
             <span>Deployment</span>
@@ -58,25 +57,17 @@
         <article class="card" id="brief">
           <div class="card-head">
             <h3>Today’s Market Brief</h3>
-            <span class="badge amber">Partial coverage</span>
+            <span id="briefBadge" class="badge amber">Loading</span>
           </div>
-          <p class="muted">First live brief showed strong crypto coverage but weaker equities coverage. The workflow marks coverage quality explicitly now.</p>
+          <div id="coverageStatus" class="meta-block muted"></div>
           <div class="brief-grid">
             <div>
               <h4>Headline Summary</h4>
-              <ul class="list compact">
-                <li>BTC currently looks like the strongest signal in the starter watchlist.</li>
-                <li>ETH is mixed.</li>
-                <li>NVDA, TSLA, QQQ, and SOL need better supporting data coverage.</li>
-              </ul>
+              <ul id="briefHeadline" class="list compact"></ul>
             </div>
             <div>
               <h4>Main Risks</h4>
-              <ul class="list compact">
-                <li>Weak equity coverage reduces confidence.</li>
-                <li>Macro and regulatory shifts still matter.</li>
-                <li>Narrative can outrun evidence without structured data.</li>
-              </ul>
+              <ul id="briefRisks" class="list compact"></ul>
             </div>
           </div>
         </article>
@@ -86,40 +77,11 @@
             <h3>Core Watchlist</h3>
             <span class="badge">Configured</span>
           </div>
-          <div class="watch-grid">
-            <div class="watch-item"><strong>BTC</strong><span>Crypto risk barometer</span></div>
-            <div class="watch-item"><strong>ETH</strong><span>Smart contract ecosystem pulse</span></div>
-            <div class="watch-item"><strong>SOL</strong><span>High-beta alt ecosystem</span></div>
-            <div class="watch-item"><strong>NVDA</strong><span>AI infrastructure leader</span></div>
-            <div class="watch-item"><strong>TSLA</strong><span>Retail attention + AI optionality</span></div>
-            <div class="watch-item"><strong>QQQ</strong><span>Growth / tech risk proxy</span></div>
-          </div>
+          <div id="watchlistGrid" class="watch-grid"></div>
         </article>
       </section>
 
-      <section class="grid three" id="status">
-        <article class="card">
-          <div class="card-head">
-            <h3>Research Pipeline</h3>
-            <span class="badge green">Active</span>
-          </div>
-          <p>Company briefs, market pipeline, daily brief mailer, and model-routing logic are in place.</p>
-        </article>
-        <article class="card">
-          <div class="card-head">
-            <h3>Wallet Watch</h3>
-            <span class="badge amber">Awaiting config</span>
-          </div>
-          <p>Sponge monitoring flow exists, but live verification still needs wallet credentials on disk.</p>
-        </article>
-        <article class="card">
-          <div class="card-head">
-            <h3>Deploy Status</h3>
-            <span class="badge green">Live</span>
-          </div>
-          <p>Dashboard is deployed to Vercel. GitHub auto-linking can be improved later, but live deploy is working.</p>
-        </article>
-      </section>
+      <section id="statusGrid" class="grid three"></section>
 
       <section class="grid two" id="shared-projects">
         <article class="card">
@@ -127,23 +89,7 @@
             <h3>Shared Projects</h3>
             <span class="badge green">Visible</span>
           </div>
-          <div class="project-grid">
-            <div class="project-card">
-              <strong>Market Ops HQ</strong>
-              <span>Briefs, watchlists, wallet status, risk monitoring</span>
-              <small>Risk: medium • 3 active tasks</small>
-            </div>
-            <div class="project-card">
-              <strong>Build + Launch</strong>
-              <span>Repo work, release flow, deploy visibility, launch comms</span>
-              <small>Risk: medium • 2 active tasks</small>
-            </div>
-            <div class="project-card">
-              <strong>Creator Ops</strong>
-              <span>Content pipeline, editing handoffs, distribution, monetization hooks</span>
-              <small>Risk: low • 2 active tasks</small>
-            </div>
-          </div>
+          <div id="projectGrid" class="project-grid"></div>
         </article>
 
         <article class="card" id="agent-roster">
@@ -151,13 +97,7 @@
             <h3>Agent Roster</h3>
             <span class="badge">Role-based</span>
           </div>
-          <ul class="list compact">
-            <li><strong>Research Agent</strong> — briefs, scans, competitor intelligence</li>
-            <li><strong>Ops Agent</strong> — deploys, status, monitoring, runbooks</li>
-            <li><strong>Comms Agent</strong> — inboxes, drafts, updates, summaries</li>
-            <li><strong>Trading/Risk Agent</strong> — watchlists, wallet watch, risk notes</li>
-            <li><strong>Builder Agent</strong> — issues, PRs, shipping workflow</li>
-          </ul>
+          <ul id="agentList" class="list compact"></ul>
         </article>
       </section>
 
@@ -167,58 +107,10 @@
           <span class="badge green">Mock workflow live</span>
         </div>
         <div class="task-board">
-          <div class="task-column">
-            <h4>Queued</h4>
-            <div class="task-card low">
-              <strong>Improve equity data coverage</strong>
-              <span>Project: Market Ops HQ</span>
-              <small>Owner: Research Agent • Risk: low</small>
-            </div>
-            <div class="task-card low">
-              <strong>Map CapCut/Descript handoff flow</strong>
-              <span>Project: Creator Ops</span>
-              <small>Owner: Comms Agent • Risk: low</small>
-            </div>
-          </div>
-          <div class="task-column">
-            <h4>In Progress</h4>
-            <div class="task-card medium">
-              <strong>Refine shared-agent workspace UI</strong>
-              <span>Project: Build + Launch</span>
-              <small>Owner: Builder Agent • Risk: medium</small>
-            </div>
-            <div class="task-card medium">
-              <strong>Prepare daily market brief quality upgrade</strong>
-              <span>Project: Market Ops HQ</span>
-              <small>Owner: Research Agent • Risk: medium</small>
-            </div>
-          </div>
-          <div class="task-column">
-            <h4>Approval Needed</h4>
-            <div class="task-card high">
-              <strong>Configure Sponge wallet credentials</strong>
-              <span>Project: Market Ops HQ</span>
-              <small>Owner: Trading/Risk Agent • Risk: high</small>
-            </div>
-            <div class="task-card high">
-              <strong>Enable production-facing automation</strong>
-              <span>Project: Build + Launch</span>
-              <small>Owner: Ops Agent • Risk: high</small>
-            </div>
-          </div>
-          <div class="task-column">
-            <h4>Done</h4>
-            <div class="task-card done">
-              <strong>Deploy dashboard to Vercel</strong>
-              <span>Project: Build + Launch</span>
-              <small>Owner: Ops Agent • Completed</small>
-            </div>
-            <div class="task-card done">
-              <strong>Push market ops starter to GitHub</strong>
-              <span>Project: Build + Launch</span>
-              <small>Owner: Builder Agent • Completed</small>
-            </div>
-          </div>
+          <div class="task-column"><h4>Queued</h4><div id="queuedTasks"></div></div>
+          <div class="task-column"><h4>In Progress</h4><div id="inProgressTasks"></div></div>
+          <div class="task-column"><h4>Approval Needed</h4><div id="approvalNeededTasks"></div></div>
+          <div class="task-column"><h4>Done</h4><div id="doneTasks"></div></div>
         </div>
       </section>
 
@@ -228,12 +120,7 @@
             <h3>Approvals Queue</h3>
             <span class="badge amber">Structured</span>
           </div>
-          <ul class="list compact">
-            <li>Production deploy approvals</li>
-            <li>Important outbound email approvals</li>
-            <li>Secret/config change approvals</li>
-            <li>Money-moving action approvals</li>
-          </ul>
+          <ul id="approvalList" class="list compact"></ul>
         </article>
 
         <article class="card">
@@ -268,5 +155,77 @@
       </section>
     </main>
   </div>
+
+  <script>
+    const riskClass = (risk) => {
+      if (risk === 'low') return 'low';
+      if (risk === 'medium') return 'medium';
+      if (risk === 'high') return 'high';
+      return 'done';
+    };
+
+    const taskCard = (task) => `
+      <div class="task-card ${riskClass(task.risk)}">
+        <strong>${task.title}</strong>
+        <span>Project: ${task.project}</span>
+        <small>Owner: ${task.owner}${task.risk !== 'done' ? ` • Risk: ${task.risk}` : ' • Completed'}</small>
+      </div>
+    `;
+
+    fetch('./data/dashboard.json')
+      .then((r) => r.json())
+      .then((data) => {
+        const briefBadge = document.getElementById('briefBadge');
+        briefBadge.textContent = `${data.brief.coverageStatus.overall} coverage`;
+        briefBadge.className = `badge ${data.brief.coverageStatus.overall === 'usable' ? 'amber' : 'green'}`;
+
+        document.getElementById('coverageStatus').innerHTML = `
+          Crypto: ${data.brief.coverageStatus.crypto} •
+          Equities: ${data.brief.coverageStatus.equities} •
+          Macro: ${data.brief.coverageStatus.macro} •
+          Overall: ${data.brief.coverageStatus.overall}
+        `;
+
+        document.getElementById('briefHeadline').innerHTML = data.brief.headline.map(x => `<li>${x}</li>`).join('');
+        document.getElementById('briefRisks').innerHTML = data.brief.risks.map(x => `<li>${x}</li>`).join('');
+
+        document.getElementById('watchlistGrid').innerHTML = data.watchlist.map(item => `
+          <div class="watch-item"><strong>${item.symbol}</strong><span>${item.note}</span></div>
+        `).join('');
+
+        document.getElementById('statusGrid').innerHTML = data.statusCards.map(card => `
+          <article class="card">
+            <div class="card-head">
+              <h3>${card.title}</h3>
+              <span class="badge ${card.badgeClass || ''}">${card.badge}</span>
+            </div>
+            <p>${card.text}</p>
+          </article>
+        `).join('');
+
+        document.getElementById('projectGrid').innerHTML = data.projects.map(project => `
+          <div class="project-card">
+            <strong>${project.name}</strong>
+            <span>${project.summary}</span>
+            <small>${project.meta}</small>
+          </div>
+        `).join('');
+
+        document.getElementById('agentList').innerHTML = data.agents.map(agent => `
+          <li><strong>${agent.name}</strong> — ${agent.role}</li>
+        `).join('');
+
+        document.getElementById('queuedTasks').innerHTML = data.taskBoard.queued.map(taskCard).join('');
+        document.getElementById('inProgressTasks').innerHTML = data.taskBoard.inProgress.map(taskCard).join('');
+        document.getElementById('approvalNeededTasks').innerHTML = data.taskBoard.approvalNeeded.map(taskCard).join('');
+        document.getElementById('doneTasks').innerHTML = data.taskBoard.done.map(taskCard).join('');
+
+        document.getElementById('approvalList').innerHTML = data.approvals.map(item => `<li>${item}</li>`).join('');
+      })
+      .catch((err) => {
+        console.error(err);
+        document.getElementById('briefBadge').textContent = 'data load failed';
+      });
+  </script>
 </body>
 </html>

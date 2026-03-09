@@ -1,0 +1,69 @@
+{
+  "brief": {
+    "coverageStatus": {
+      "crypto": "complete",
+      "equities": "weak",
+      "macro": "partial",
+      "overall": "usable"
+    },
+    "headline": [
+      "BTC currently looks like the strongest signal in the starter watchlist.",
+      "ETH is mixed.",
+      "NVDA, TSLA, QQQ, and SOL need better supporting data coverage."
+    ],
+    "risks": [
+      "Weak equity coverage reduces confidence.",
+      "Macro and regulatory shifts still matter.",
+      "Narrative can outrun evidence without structured data."
+    ]
+  },
+  "watchlist": [
+    {"symbol": "BTC", "note": "Crypto risk barometer"},
+    {"symbol": "ETH", "note": "Smart contract ecosystem pulse"},
+    {"symbol": "SOL", "note": "High-beta alt ecosystem"},
+    {"symbol": "NVDA", "note": "AI infrastructure leader"},
+    {"symbol": "TSLA", "note": "Retail attention + AI optionality"},
+    {"symbol": "QQQ", "note": "Growth / tech risk proxy"}
+  ],
+  "statusCards": [
+    {"title": "Research Pipeline", "badge": "Active", "badgeClass": "green", "text": "Company briefs, market pipeline, daily brief mailer, and model-routing logic are in place."},
+    {"title": "Wallet Watch", "badge": "Awaiting config", "badgeClass": "amber", "text": "Sponge monitoring flow exists, but live verification still needs wallet credentials on disk."},
+    {"title": "Deploy Status", "badge": "Live", "badgeClass": "green", "text": "Dashboard is deployed to Vercel. Manual deploy path is working."}
+  ],
+  "projects": [
+    {"name": "Market Ops HQ", "summary": "Briefs, watchlists, wallet status, risk monitoring", "meta": "Risk: medium • 3 active tasks"},
+    {"name": "Build + Launch", "summary": "Repo work, release flow, deploy visibility, launch comms", "meta": "Risk: medium • 2 active tasks"},
+    {"name": "Creator Ops", "summary": "Content pipeline, editing handoffs, distribution, monetization hooks", "meta": "Risk: low • 2 active tasks"}
+  ],
+  "agents": [
+    {"name": "Research Agent", "role": "briefs, scans, competitor intelligence"},
+    {"name": "Ops Agent", "role": "deploys, status, monitoring, runbooks"},
+    {"name": "Comms Agent", "role": "inboxes, drafts, updates, summaries"},
+    {"name": "Trading/Risk Agent", "role": "watchlists, wallet watch, risk notes"},
+    {"name": "Builder Agent", "role": "issues, PRs, shipping workflow"}
+  ],
+  "taskBoard": {
+    "queued": [
+      {"title": "Improve equity data coverage", "project": "Market Ops HQ", "owner": "Research Agent", "risk": "low"},
+      {"title": "Map CapCut/Descript handoff flow", "project": "Creator Ops", "owner": "Comms Agent", "risk": "low"}
+    ],
+    "inProgress": [
+      {"title": "Refine shared-agent workspace UI", "project": "Build + Launch", "owner": "Builder Agent", "risk": "medium"},
+      {"title": "Prepare daily market brief quality upgrade", "project": "Market Ops HQ", "owner": "Research Agent", "risk": "medium"}
+    ],
+    "approvalNeeded": [
+      {"title": "Configure Sponge wallet credentials", "project": "Market Ops HQ", "owner": "Trading/Risk Agent", "risk": "high"},
+      {"title": "Enable production-facing automation", "project": "Build + Launch", "owner": "Ops Agent", "risk": "high"}
+    ],
+    "done": [
+      {"title": "Deploy dashboard to Vercel", "project": "Build + Launch", "owner": "Ops Agent", "risk": "done"},
+      {"title": "Push market ops starter to GitHub", "project": "Build + Launch", "owner": "Builder Agent", "risk": "done"}
+    ]
+  },
+  "approvals": [
+    "Production deploy approvals",
+    "Important outbound email approvals",
+    "Secret/config change approvals",
+    "Money-moving action approvals"
+  ]
+}
