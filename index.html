@@ -22,7 +22,9 @@
         <a href="#brief">Today’s Brief</a>
         <a href="#watchlist">Watchlist</a>
         <a href="#status">System Status</a>
-        <a href="#workflows">Workflows</a>
+        <a href="#shared-projects">Shared Projects</a>
+        <a href="#agent-roster">Agent Roster</a>
+        <a href="#approvals">Approvals Queue</a>
         <a href="#future">Future Team Agents</a>
       </nav>
     </aside>
@@ -30,23 +32,23 @@
     <main class="main">
       <header class="hero" id="overview">
         <div>
-          <p class="eyebrow">Market ops dashboard v1</p>
-          <h2>One surface for market research, ops awareness, wallet monitoring, and shipping.</h2>
+          <p class="eyebrow">Market ops dashboard v2</p>
+          <h2>Solo command center now, shared agent workspace next.</h2>
           <p class="subcopy">
-            This starter is evolving into the home for your daily market brief, watchlist intelligence,
-            wallet monitoring, deployment visibility, and eventually shared multi-agent collaboration.
+            This dashboard is evolving from your personal market and ops cockpit into a collaborative workspace
+            where trusted agents can coordinate on shared projects with scoped permissions and approvals.
           </p>
         </div>
         <div class="hero-cards">
           <section class="card stat">
             <span>Dashboard state</span>
-            <strong>v1 local build</strong>
-            <small>GitHub pushed • deploy auth pending</small>
+            <strong>v2 architecture-ready</strong>
+            <small>Shared-agent model drafted</small>
           </section>
           <section class="card stat">
             <span>Operating mode</span>
             <strong>Draft-first</strong>
-            <small>Approval gate enabled</small>
+            <small>Approval queue planned</small>
           </section>
         </div>
       </header>
@@ -118,32 +120,71 @@
         </article>
       </section>
 
-      <section class="grid two" id="workflows">
+      <section class="grid two" id="shared-projects">
         <article class="card">
-          <h3>Live Workflows Ready</h3>
-          <ol class="steps">
-            <li>Research brief → email/report</li>
-            <li>Issue → PR → preview deploy flow</li>
-            <li>Inbox triage → draft replies → digest</li>
-            <li>Daily market brief → approval → email draft</li>
-          </ol>
+          <div class="card-head">
+            <h3>Shared Projects</h3>
+            <span class="badge green">Planned</span>
+          </div>
+          <div class="project-grid">
+            <div class="project-card">
+              <strong>Market Ops HQ</strong>
+              <span>Briefs, watchlists, wallet status, risk monitoring</span>
+            </div>
+            <div class="project-card">
+              <strong>Build + Launch</strong>
+              <span>Repo work, release flow, deploy visibility, launch comms</span>
+            </div>
+            <div class="project-card">
+              <strong>Creator Ops</strong>
+              <span>Content pipeline, editing handoffs, distribution, monetization hooks</span>
+            </div>
+          </div>
         </article>
-        <article class="card">
-          <h3>Highest-Value Next Upgrades</h3>
+
+        <article class="card" id="agent-roster">
+          <div class="card-head">
+            <h3>Agent Roster</h3>
+            <span class="badge">Role-based</span>
+          </div>
           <ul class="list compact">
-            <li>Add structured market-data source for equities and price levels.</li>
-            <li>Fix Vercel deploy auth and push preview live.</li>
-            <li>Configure Sponge credentials for wallet verification.</li>
-            <li>Add brief history and status widgets.</li>
+            <li><strong>Research Agent</strong> — briefs, scans, competitor intelligence</li>
+            <li><strong>Ops Agent</strong> — deploys, status, monitoring, runbooks</li>
+            <li><strong>Comms Agent</strong> — inboxes, drafts, updates, summaries</li>
+            <li><strong>Trading/Risk Agent</strong> — watchlists, wallet watch, risk notes</li>
+            <li><strong>Builder Agent</strong> — issues, PRs, shipping workflow</li>
           </ul>
+        </article>
+      </section>
+
+      <section class="grid two" id="approvals">
+        <article class="card">
+          <div class="card-head">
+            <h3>Approvals Queue</h3>
+            <span class="badge amber">Placeholder</span>
+          </div>
+          <ul class="list compact">
+            <li>Production deploy approvals</li>
+            <li>Important outbound email approvals</li>
+            <li>Secret/config change approvals</li>
+            <li>Money-moving action approvals</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h3>Audit Trail</h3>
+            <span class="badge">Planned</span>
+          </div>
+          <p class="muted">Future versions should log who did what, on which project, with which approval path.</p>
         </article>
       </section>
 
       <section class="card" id="future">
         <h3>Future Direction: Shared Agent Workspace</h3>
         <p>
-          This can grow from a solo command center into a shared workspace where your agent and your friends’ agents
-          collaborate on joint projects with scoped permissions, approvals, and shared visibility.
+          This system is now designed to evolve into a shared workspace where your agent and your friends’ agents
+          collaborate on joint work with clear project boundaries, role-based access, approval gates, and auditability.
         </p>
         <div class="future-grid">
           <div>
@@ -156,7 +197,7 @@
           </div>
           <div>
             <h4>Phase C</h4>
-            <p>Multi-agent collaboration with role-based access, audit trails, and approval boundaries.</p>
+            <p>Multi-agent collaboration with scoped roles, audit trails, and explicit approvals.</p>
           </div>
         </div>
       </section>
