@@ -19,112 +19,144 @@
 
       <nav class="nav">
         <a href="#overview">Overview</a>
+        <a href="#brief">Today’s Brief</a>
         <a href="#watchlist">Watchlist</a>
-        <a href="#briefs">Daily Brief</a>
-        <a href="#wallet">Wallet Watch</a>
-        <a href="#ops">Ops Watchdog</a>
-        <a href="#future">Future: Team Agents</a>
+        <a href="#status">System Status</a>
+        <a href="#workflows">Workflows</a>
+        <a href="#future">Future Team Agents</a>
       </nav>
     </aside>
 
     <main class="main">
       <header class="hero" id="overview">
         <div>
-          <p class="eyebrow">Starter dashboard</p>
-          <h2>Research, trading ops, delivery, and monitoring in one place.</h2>
+          <p class="eyebrow">Market ops dashboard v1</p>
+          <h2>One surface for market research, ops awareness, wallet monitoring, and shipping.</h2>
           <p class="subcopy">
-            This starter is designed to become the home for your daily market brief,
-            watchlist, wallet visibility, and eventually shared multi-agent workflows.
+            This starter is evolving into the home for your daily market brief, watchlist intelligence,
+            wallet monitoring, deployment visibility, and eventually shared multi-agent collaboration.
           </p>
         </div>
         <div class="hero-cards">
           <section class="card stat">
-            <span>Status</span>
-            <strong>Starter live</strong>
-            <small>Ready for Vercel deploy</small>
+            <span>Dashboard state</span>
+            <strong>v1 local build</strong>
+            <small>GitHub pushed • deploy auth pending</small>
           </section>
           <section class="card stat">
-            <span>Mode</span>
+            <span>Operating mode</span>
             <strong>Draft-first</strong>
-            <small>Approval gate on</small>
+            <small>Approval gate enabled</small>
           </section>
         </div>
       </header>
 
       <section class="grid two">
-        <article class="card" id="watchlist">
-          <h3>Core Watchlist</h3>
-          <ul class="list">
-            <li><strong>BTC</strong><span>Crypto risk barometer</span></li>
-            <li><strong>ETH</strong><span>Smart contract ecosystem pulse</span></li>
-            <li><strong>SOL</strong><span>High-beta ecosystem growth</span></li>
-            <li><strong>NVDA</strong><span>AI infrastructure leader</span></li>
-            <li><strong>TSLA</strong><span>Retail attention + AI optionality</span></li>
-            <li><strong>QQQ</strong><span>Growth / tech risk proxy</span></li>
-          </ul>
+        <article class="card" id="brief">
+          <div class="card-head">
+            <h3>Today’s Market Brief</h3>
+            <span class="badge amber">Partial coverage</span>
+          </div>
+          <p class="muted">First live brief showed strong crypto coverage but weaker equities coverage. The workflow has been upgraded to mark coverage quality explicitly.</p>
+          <div class="brief-grid">
+            <div>
+              <h4>Headline Summary</h4>
+              <ul class="list compact">
+                <li>BTC currently looks like the strongest signal in the starter watchlist.</li>
+                <li>ETH is mixed.</li>
+                <li>NVDA, TSLA, QQQ, and SOL need better supporting data coverage.</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Main Risks</h4>
+              <ul class="list compact">
+                <li>Weak equity coverage reduces confidence.</li>
+                <li>Macro and regulatory shifts still matter.</li>
+                <li>Narrative can outrun evidence without structured data.</li>
+              </ul>
+            </div>
+          </div>
         </article>
 
-        <article class="card" id="briefs">
-          <h3>Daily Brief Workflow</h3>
-          <ol class="steps">
-            <li>Gather fresh research and catalysts</li>
-            <li>Split crypto / equities / macro coverage</li>
-            <li>Generate market brief draft</li>
-            <li>Convert to email-ready summary</li>
-            <li>Review before send</li>
-          </ol>
+        <article class="card" id="watchlist">
+          <div class="card-head">
+            <h3>Core Watchlist</h3>
+            <span class="badge">Configured</span>
+          </div>
+          <div class="watch-grid">
+            <div class="watch-item"><strong>BTC</strong><span>Crypto risk barometer</span></div>
+            <div class="watch-item"><strong>ETH</strong><span>Smart contract ecosystem pulse</span></div>
+            <div class="watch-item"><strong>SOL</strong><span>High-beta alt ecosystem</span></div>
+            <div class="watch-item"><strong>NVDA</strong><span>AI infrastructure leader</span></div>
+            <div class="watch-item"><strong>TSLA</strong><span>Retail attention + AI optionality</span></div>
+            <div class="watch-item"><strong>QQQ</strong><span>Growth / tech risk proxy</span></div>
+          </div>
         </article>
       </section>
 
-      <section class="grid three">
-        <article class="card" id="wallet">
-          <h3>Wallet Watch</h3>
-          <p>Track balances, recent transactions, anomalies, and approval-gated actions.</p>
-          <div class="pill-row">
-            <span class="pill muted">Needs Sponge credentials</span>
-            <span class="pill">Monitoring-first</span>
-          </div>
-        </article>
-
-        <article class="card" id="ops">
-          <h3>Ops Watchdog</h3>
-          <p>Surface failures in deploys, inbox processing, wallet flows, cron jobs, and integrations.</p>
-          <div class="pill-row">
-            <span class="pill">Healthy by default</span>
-            <span class="pill muted">Alerts coming next</span>
-          </div>
-        </article>
-
+      <section class="grid three" id="status">
         <article class="card">
-          <h3>Creator + Business</h3>
-          <p>Connect research, content, launches, email delivery, and monetization hooks.</p>
-          <div class="pill-row">
-            <span class="pill">AgentMail</span>
-            <span class="pill">Vercel</span>
-            <span class="pill">GitHub</span>
+          <div class="card-head">
+            <h3>Research Pipeline</h3>
+            <span class="badge green">Active</span>
           </div>
+          <p>Company briefs, market pipeline, daily brief mailer, and model-routing logic are in place.</p>
+        </article>
+        <article class="card">
+          <div class="card-head">
+            <h3>Wallet Watch</h3>
+            <span class="badge amber">Awaiting config</span>
+          </div>
+          <p>Sponge monitoring flow exists, but live verification still needs wallet credentials on disk.</p>
+        </article>
+        <article class="card">
+          <div class="card-head">
+            <h3>Deploy Status</h3>
+            <span class="badge red">Blocked</span>
+          </div>
+          <p>Repo is pushed to GitHub. Vercel CLI deployment is blocked by token/auth mismatch.</p>
+        </article>
+      </section>
+
+      <section class="grid two" id="workflows">
+        <article class="card">
+          <h3>Live Workflows Ready</h3>
+          <ol class="steps">
+            <li>Research brief → email/report</li>
+            <li>Issue → PR → preview deploy flow</li>
+            <li>Inbox triage → draft replies → digest</li>
+            <li>Daily market brief → approval → email draft</li>
+          </ol>
+        </article>
+        <article class="card">
+          <h3>Highest-Value Next Upgrades</h3>
+          <ul class="list compact">
+            <li>Add structured market-data source for equities and price levels.</li>
+            <li>Fix Vercel deploy auth and push preview live.</li>
+            <li>Configure Sponge credentials for wallet verification.</li>
+            <li>Add brief history and status widgets.</li>
+          </ul>
         </article>
       </section>
 
       <section class="card" id="future">
         <h3>Future Direction: Shared Agent Workspace</h3>
         <p>
-          Long term, this dashboard can evolve into a shared operator surface where your agent and your friends'
-          agents load into the same workspace, coordinate on projects, and contribute to joint research,
-          shipping, content, and business operations with explicit permissions and approval boundaries.
+          This can grow from a solo command center into a shared workspace where your agent and your friends’ agents
+          collaborate on joint projects with scoped permissions, approvals, and shared visibility.
         </p>
         <div class="future-grid">
           <div>
             <h4>Phase A</h4>
-            <p>Your solo command center: briefs, watchlists, wallet monitoring, deploy status.</p>
+            <p>Solo dashboard: briefs, watchlist, wallet monitoring, deploy status.</p>
           </div>
           <div>
             <h4>Phase B</h4>
-            <p>Shared projects: common task board, shared briefs, repo/release visibility, notification routing.</p>
+            <p>Shared projects: common briefing surface, notifications, repo/release visibility.</p>
           </div>
           <div>
             <h4>Phase C</h4>
-            <p>Multi-agent collaboration: role-based agents, approvals, audit trails, and scoped access.</p>
+            <p>Multi-agent collaboration with role-based access, audit trails, and approval boundaries.</p>
           </div>
         </div>
       </section>
